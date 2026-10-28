@@ -5,7 +5,7 @@
  */
 window.ML_SQUAD_CONFIG = {
   SUPABASE_URL: "https://itkrtfbxxoncfzgyixig.supabase.co",
-  SUPABASE_ANON_KEY: "PASTE_SUPABASE_PUBLISHABLE_OR_ANON_KEY_HERE",
+  SUPABASE_ANON_KEY: "sb_publishable_0yPHxmBWXmCANfx1m89_7Q_BckcGEA6",
   SAWERIA_URL: "https://saweria.co/",
   DANA_NUMBER: "082191523276"
 };
