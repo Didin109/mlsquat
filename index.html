@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="ML Squad — komunitas tukaran like dan cari teman mabar Mobile Legends.">
+  <title>ML Squad — Community Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar wrap">
+    <a class="brand" href="#" aria-label="ML Squad beranda">
+      <span class="brand-mark">ML</span>
+      <span><b>ML SQUAD</b><small>COMMUNITY HUB</small></span>
+    </a>
+    <div class="top-tag"><span class="live-dot"></span> ✨ Main bareng, berkembang bareng.</div>
+    <a class="top-link" href="#buat-postingan">+ Buat Postingan</a>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> HOME FOR MLBB PLAYERS</div>
+        <h1>Tukar <span>Like.</span><br> Cari Teman <span>Mabar.</span></h1>
+        <p class="hero-desc">Tempat kumpul pemain Mobile Legends untuk saling dukung profil, cari party yang cocok, dan berkembang bareng dengan sportif.</p>
+        <div class="hero-pills"><span>♡ Saling like</span><span>♧ Cari party</span><span>⌑ Simpan postingan</span></div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-top"><div class="spark-icon">✦</div><span class="mini-label">SQUAD CULTURE</span><span class="online-count"><i></i> COMMUNITY</span></div>
+        <h3>Fair play, mulai dari hal kecil.</h3>
+        <p>Tukaran like dengan jelas, cari teman yang satu tujuan, dan tetap saling menghargai.</p>
+        <div class="fair-row"><div class="fair-icon cyan">↔</div><div><b>Dua arah, saling bantu</b><small>Sepakati tukaran like dengan jujur.</small></div><span class="check">✓</span></div>
+        <div class="fair-row"><div class="fair-icon blue">♙</div><div><b>Party yang cocok</b><small>Temukan role dan rank yang sesuai.</small></div><span class="check">✓</span></div>
+      </div>
+    </section>
+
+    <section class="stats-row">
+      <div class="stat"><span class="stat-icon">◉</span><div><b id="stat-total">0</b><small>Postingan komunitas</small></div></div>
+      <div class="stat"><span class="stat-icon green">♡</span><div><b id="stat-like">0</b><small>Tukaran like</small></div></div>
+      <div class="stat"><span class="stat-icon blue">⚔</span><div><b id="stat-party">0</b><small>Cari teman mabar</small></div></div>
+      <div class="status-pill"><span class="live-dot"></span><span id="connection-label">Menyiapkan koneksi</span></div>
+    </section>
+
+    <div class="section-heading">
+      <div><div class="eyebrow">COMMUNITY BOARD</div><h2>Temukan squad-mu<span>.</span></h2></div>
+      <div class="filters" role="tablist" aria-label="Filter postingan">
+        <button class="filter active" data-filter="all">🌐 Semua</button>
+        <button class="filter" data-filter="like">💚 Tukaran Like</button>
+        <button class="filter" data-filter="party">🎮 Cari Mabar</button>
+      </div>
+    </div>
+
+    <section class="content-grid">
+      <aside class="panel form-panel" id="buat-postingan">
+        <div class="panel-heading"><div><div class="eyebrow">LET'S CONNECT</div><h3>Buat Postingan</h3></div><span class="panel-symbol">＋</span></div>
+        <p class="muted">Ceritakan apa yang kamu cari. Biar squad yang tepat bisa menemukanmu.</p>
+        <form id="post-form">
+          <label class="field-label">Aku ingin…</label>
+          <div class="category-choice">
+            <label class="choice selected" id="choice-like"><input type="radio" name="category" value="like_exchange" checked><span class="choice-icon">♡</span><span><b>Tukaran Like</b><small>Saling dukung profil</small></span></label>
+            <label class="choice" id="choice-party"><input type="radio" name="category" value="looking_for_party"><span class="choice-icon party-icon">⚔</span><span><b>Cari Mabar</b><small>Temukan teman party</small></span></label>
+          </div>
+          <div class="field"><label for="nickname">Nickname <em>*</em></label><input id="nickname" maxlength="40" required placeholder="Contoh: KucingMid"></div>
+          <div class="field-row">
+            <div class="field"><label for="mlid">ID Mobile Legends <em>*</em></label><input id="mlid" maxlength="24" required inputmode="numeric" placeholder="123456789"></div>
+            <div class="field"><label for="zoneid">Zone ID <em>*</em></label><input id="zoneid" maxlength="12" required inputmode="numeric" placeholder="1234"></div>
+          </div>
+
+          <div id="like-fields">
+            <div class="field"><label for="like-target">Target tukaran</label><select id="like-target"><option value="Saling like profil">Saling like profil</option><option value="Bantu like dulu, balas setelahnya">Bantu like dulu, balas setelahnya</option></select></div>
+          </div>
+          <div id="party-fields" hidden>
+            <div class="field"><label for="rank">Rank saat ini</label><select id="rank"><option>Warrior</option><option>Elite</option><option>Master</option><option>Grandmaster</option><option>Epic</option><option>Legend</option><option>Mythic</option><option>Mythical Honor</option><option>Mythical Glory</option><option>Mythical Immortal</option></select></div>
+            <div class="field"><label for="role">Role favorit</label><select id="role"><option>Fleksibel</option><option>Roam</option><option>Jungler</option><option>Mid Lane</option><option>Gold Lane</option><option>EXP Lane</option></select></div>
+          </div>
+          <div class="field"><label for="note">Catatan <span>(opsional)</span></label><textarea id="note" rows="3" maxlength="240" placeholder="Tulis info singkat yang perlu diketahui…"></textarea><div class="field-hint">Maksimal 240 karakter.</div></div>
+          <div class="field"><label for="email">Email notifikasi <span>(opsional)</span></label><input id="email" type="email" maxlength="254" placeholder="nama@email.com"><div class="field-hint">Hanya untuk konfirmasi postingan. Jangan masukkan password atau OTP.</div></div>
+          <label class="consent"><input type="checkbox" id="email-consent"> Saya setuju menerima email konfirmasi untuk postingan ini.</label>
+          <button class="primary-btn" id="publish-btn" type="submit">Publikasikan Postingan <span>↗</span></button>
+          <p class="privacy-note">♧ Data postingan disimpan di database komunitas. Jangan pernah membagikan password, OTP, atau informasi rahasia akun.</p>
+          <div class="form-message" id="form-message" role="status"></div>
+        </form>
+      </aside>
+
+      <section class="feed-column">
+        <div class="feed-head"><div><div class="eyebrow">FIND YOUR PEOPLE</div><h3 id="feed-title">Semua Postingan <span id="post-count">0</span></h3></div><button id="refresh-btn" class="icon-btn" title="Muat ulang postingan" aria-label="Muat ulang">↻</button></div>
+        <div id="feed" class="feed-list">
+          <div class="loading-card"><span class="spinner"></span><p>Menghubungkan ke papan komunitas…</p></div>
+        </div>
+        <div class="feed-foot"><span class="live-dot"></span> Papan komunitas ML Squad</div>
+      </section>
+    </section>
+
+    <section class="donate-card">
+      <div class="donate-art">♥</div><div class="donate-copy"><div class="eyebrow">KEEP THE COMMUNITY ALIVE</div><h3>Dukung ML Squad<span>.</span></h3><p>Kalau komunitas ini bermanfaat, dukunganmu membantu kami terus berkembang.</p></div>
+      <div class="donate-actions"><a class="secondary-btn" id="saweria-link" href="#" target="_blank" rel="noopener">💛 Donasi Saweria</a><button class="outline-btn" id="copy-dana">▣ Salin nomor DANA</button><small id="donate-message" aria-live="polite"></small></div>
+    </section>
+  </main>
+
+  <footer class="wrap footer"><a class="brand footer-brand" href="#"><span class="brand-mark">ML</span><span><b>ML SQUAD</b><small>COMMUNITY HUB</small></span></a><p>Komunitas independen buatan penggemar. Tidak berafiliasi dengan Moonton atau Mobile Legends: Bang Bang.</p><span>Made for players, by players · <span id="year"></span></span></footer>
+
+  <dialog id="confirm-dialog" class="confirm-dialog"><div class="dialog-mark">!</div><h3 id="dialog-title">Konfirmasi tindakan</h3><p id="dialog-copy">Yakin ingin melanjutkan?</p><div class="dialog-actions"><button class="outline-btn" id="dialog-cancel">Batal</button><button class="primary-btn danger-btn" id="dialog-confirm">Ya, lanjutkan</button></div></dialog>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
